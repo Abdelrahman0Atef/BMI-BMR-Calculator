@@ -1,4 +1,3 @@
-import 'package:bmi_calculator/Components/ReresuletButton.dart';
 import 'package:bmi_calculator/Components/ResuletButton.dart';
 import 'package:flutter/material.dart';
 import 'package:bmi_calculator/consts.dart';
@@ -57,7 +56,7 @@ class ResultPage extends StatelessWidget {
               ),
             ),
           ),
-          ReresuletButton(title: 'RE-CALCULATE',onTap: (){
+          ResuletButton(title: 'RE-CALCULATE',onTap: (){
             Navigator.pop(context);
           },)
         ],

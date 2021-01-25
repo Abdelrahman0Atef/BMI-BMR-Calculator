@@ -32,7 +32,7 @@ class _InputPageState extends State<InputPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('BMI CALCULATOR'),
+        title: Text('BMI&BMR CALCULATOR'),
       ),
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -83,9 +83,12 @@ class _InputPageState extends State<InputPage> {
               cardChild: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Text(
-                    'HIGHT',
-                    style: Klabelstyle,
+                  Padding(
+                    padding: EdgeInsets.only(top: 5),
+                    child: Text(
+                      'HIGHT',
+                      style: Klabelstyle,
+                    ),
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -102,17 +105,20 @@ class _InputPageState extends State<InputPage> {
                     ],
                   ),
                   Expanded(
-                    child: Slider(
-                      value: height.toDouble(),
-                      min: 120,
-                      max: 230,
-                      onChanged: (double value) {
-                        setState(() {
-                          height = value.round();
-                        });
-                      },
-                      activeColor: kBottomcontainercolor,
-                      inactiveColor: kActivecardcolor,
+                    child: Padding(
+                      padding: EdgeInsets.only(bottom: 5),
+                      child: Slider(
+                        value: height.toDouble(),
+                        min: 120,
+                        max: 230,
+                        onChanged: (double value) {
+                          setState(() {
+                            height = value.round();
+                          });
+                        },
+                        activeColor: kBottomcontainercolor,
+                        inactiveColor: kActivecardcolor,
+                      ),
                     ),
                   )
                 ],
@@ -128,36 +134,42 @@ class _InputPageState extends State<InputPage> {
                     cardChild: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(
-                          'WEIGHT',
-                          style: Klabelstyle,
+                        Padding(
+                          padding: const EdgeInsets.only(top: 5),
+                          child: Text(
+                            'WEIGHT',
+                            style: Klabelstyle,
+                          ),
                         ),
                         Text(
                           weight.toString(),
                           style: kTexttwo,
                         ),
                         Expanded(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              IconButtonByMe(
-                                icon: FontAwesomeIcons.minus,
-                                onPressed: () {
-                                  setState(() {
-                                    weight--;
-                                  });
-                                },
-                              ),
-                              SizedBox(width: 10),
-                              IconButtonByMe(
-                                icon: FontAwesomeIcons.plus,
-                                onPressed: () {
-                                  setState(() {
-                                    weight++;
-                                  });
-                                },
-                              )
-                            ],
+                          child: Padding(
+                            padding: EdgeInsets.only(bottom: 5),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                IconButtonByMe(
+                                  icon: FontAwesomeIcons.minus,
+                                  onPressed: () {
+                                    setState(() {
+                                      weight--;
+                                    });
+                                  },
+                                ),
+                                SizedBox(width: 10),
+                                IconButtonByMe(
+                                  icon: FontAwesomeIcons.plus,
+                                  onPressed: () {
+                                    setState(() {
+                                      weight++;
+                                    });
+                                  },
+                                )
+                              ],
+                            ),
                           ),
                         )
                       ],
@@ -170,34 +182,40 @@ class _InputPageState extends State<InputPage> {
                     cardChild: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
-                        Text(
-                          'AGE',
-                          style: Klabelstyle,
+                        Padding(
+                          padding: EdgeInsets.only(top: 5),
+                          child: Text(
+                            'AGE',
+                            style: Klabelstyle,
+                          ),
                         ),
                         Text(
                           age.toString(),
                           style: kTexttwo,
                         ),
                         Expanded(
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            children: [
-                              IconButtonByMe(
-                                  icon: FontAwesomeIcons.minus,
-                                  onPressed: () {
-                                    setState(() {
-                                      age--;
-                                    });
-                                  }),
-                              SizedBox(width: 10),
-                              IconButtonByMe(
-                                  icon: FontAwesomeIcons.plus,
-                                  onPressed: () {
-                                    setState(() {
-                                      age++;
-                                    });
-                                  })
-                            ],
+                          child: Padding(
+                            padding: EdgeInsets.only(bottom: 5),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                IconButtonByMe(
+                                    icon: FontAwesomeIcons.minus,
+                                    onPressed: () {
+                                      setState(() {
+                                        age--;
+                                      });
+                                    }),
+                                SizedBox(width: 10),
+                                IconButtonByMe(
+                                    icon: FontAwesomeIcons.plus,
+                                    onPressed: () {
+                                      setState(() {
+                                        age++;
+                                      });
+                                    })
+                              ],
+                            ),
                           ),
                         )
                       ],
@@ -209,47 +227,54 @@ class _InputPageState extends State<InputPage> {
           ),
           Row(
             children: [
-              ResuletButton(
-                title: 'BMI',
-                onTap: () {
-                  CalculaterBrain calc =
-                      CalculaterBrain(height: height, weight: weight);
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) => ResultPage(
-                        Calculatebmi: calc.Calculatebmi(),
-                        Result: calc.Result(),
-                        Advice: calc.Advice(),
-                      ),
-                    ),
-                  );
-                },
-              ),
-              ResuletButton(
-                title: 'BMR',
-                onTap: () {
-                  CalculaterBrain calc = CalculaterBrain(
-                      height: height, weight: weight, age: age, gender: activestate);
-                  if (activestate == true || activestate == false) {
+              Expanded(
+                flex: 5,
+                child: ResuletButton(
+                  title: 'BMI',
+                  onTap: () {
+                    CalculaterBrain calc =
+                        CalculaterBrain(height: height, weight: weight);
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                        builder: (context) => ResultPageBMR(
-                          bmr: calc.Calculatebmr(),
-                          Result: calc.ResultBMR(),
-                          AdviceBMR: calc.AdviceBMR(),
+                        builder: (context) => ResultPage(
+                          Calculatebmi: calc.Calculatebmi(),
+                          Result: calc.Result(),
+                          Advice: calc.Advice(),
                         ),
                       ),
                     );
-                  } else {
-                    CoolAlert.show(
-                      context: context,
-                      type: CoolAlertType.warning,
-                      text: "You must choose Your Type!",
-                    );
-                  }
-                },
+                  },
+                ),
+              ),
+              SizedBox(width: 10),
+              Expanded(
+                flex: 5,
+                child: ResuletButton(
+                  title: 'BMR',
+                  onTap: () {
+                    CalculaterBrain calc = CalculaterBrain(
+                        height: height, weight: weight, age: age, gender: activestate);
+                    if (activestate == true || activestate == false) {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ResultPageBMR(
+                            bmr: calc.Calculatebmr(),
+                            Result: calc.ResultBMR(),
+                            AdviceBMR: calc.AdviceBMR(),
+                          ),
+                        ),
+                      );
+                    } else {
+                      CoolAlert.show(
+                        context: context,
+                        type: CoolAlertType.warning,
+                        text: "You must choose Your Type!",
+                      );
+                    }
+                  },
+                ),
               ),
             ],
           )

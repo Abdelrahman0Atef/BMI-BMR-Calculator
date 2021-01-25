@@ -1,3 +1,5 @@
+import 'dart:ffi';
+
 import 'package:flutter/material.dart';
 import 'package:bmi_calculator/consts.dart';
 
@@ -16,9 +18,9 @@ class ResuletButton extends StatelessWidget {
         child: Center(
             child: Text(title,style: kResultbutton,)
         ),
-        margin: EdgeInsets.only(top: 10,right: 10,left: 10),
+        margin: EdgeInsets.only(top: 10),
         color: kBottomcontainercolor,
-        width: 160,
+        width: double.infinity,
         height: 70,
       ),
     );
