@@ -15,10 +15,10 @@ class CalculaterBrain {
 
   String Calculatebmr() {
     if (gender == true) {
-      _bmr = (10 * weight) + (6.25 * height) - (5 * age) + 5 * 1.53;
+      _bmr = (10 * weight) + (6.25 * height) - (5 * age) + 5;
       return _bmr.toStringAsFixed(1);
     } else if (gender == false) {
-      _bmr = (10 * weight) + (6.25 * height) - (5 * age) - 161 * 1.53;
+      _bmr = (10 * weight) + (6.25 * height) - (5 * age) - 161;
       return _bmr.toStringAsFixed(1);
     }
   }
@@ -54,9 +54,9 @@ class CalculaterBrain {
 
   String AdviceBMR() {
     return "• You need " +
-        (_bmr - 800).toStringAsFixed(1) +
+        (_bmr - 1000).toStringAsFixed(1) +
         " calories/day to lose 1 kg per week\n\n• You need " +
-        (_bmr + 800).toStringAsFixed(1) +
-        " calories/day gain weight 1 kg per week";
+        (_bmr + 1000).toStringAsFixed(1) +
+        " calories/day to gain weight 1 kg per week";
   }
 }

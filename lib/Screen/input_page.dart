@@ -6,10 +6,10 @@ import 'package:bmi_calculator/Components/ReusableCard.dart';
 import 'package:bmi_calculator/consts.dart';
 import 'package:bmi_calculator/Components/ResuletButton.dart';
 import 'package:bmi_calculator/Screen/ResultPage.dart';
-import 'package:bmi_calculator/Components/IconzButtonByMe.dart';
 import 'package:bmi_calculator/CalculaterBrain.dart';
 import 'ResultPageBMR.dart';
 import 'package:cool_alert/cool_alert.dart';
+import 'package:stepper_counter_swipe/stepper_counter_swipe.dart';
 
 enum Gender {
   male,
@@ -24,8 +24,8 @@ class InputPage extends StatefulWidget {
 class _InputPageState extends State<InputPage> {
   Gender activeGender;
   bool activestate;
-  int height = 186;
-  int weight = 75;
+  int height = 175;
+  int weight = 70;
   int age = 20;
 
   @override
@@ -92,12 +92,11 @@ class _InputPageState extends State<InputPage> {
                   ),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    crossAxisAlignment: CrossAxisAlignment.baseline,
+                    //crossAxisAlignment: CrossAxisAlignment.baseline,
                     children: [
-                      Text(
-                        height.toString(),
-                        style: kTexttwo,
-                      ),
+                        Text(
+                          height.toString(),
+                          style: kTexttwo,),
                       Text(
                         'cm',
                         style: Klabelstyle,
@@ -141,37 +140,21 @@ class _InputPageState extends State<InputPage> {
                             style: Klabelstyle,
                           ),
                         ),
-                        Text(
-                          weight.toString(),
-                          style: kTexttwo,
-                        ),
                         Expanded(
-                          child: Padding(
-                            padding: EdgeInsets.only(bottom: 5),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                IconButtonByMe(
-                                  icon: FontAwesomeIcons.minus,
-                                  onPressed: () {
-                                    setState(() {
-                                      weight--;
-                                    });
-                                  },
-                                ),
-                                SizedBox(width: 10),
-                                IconButtonByMe(
-                                  icon: FontAwesomeIcons.plus,
-                                  onPressed: () {
-                                    setState(() {
-                                      weight++;
-                                    });
-                                  },
-                                )
-                              ],
+                            child: StepperSwipe(
+                              initialValue:weight,
+                              stepperValue: weight,
+                              onChanged: (int weight1) => weight = weight1,
+                              firstIncrementDuration: Duration(milliseconds: 150),
+                              secondIncrementDuration: Duration(milliseconds: 90),
+                              direction: Axis.horizontal,
+                              dragButtonColor: kBottomcontainercolor,
+                              withFastCount: true,
+                              withPlusMinus: true,
+                              maxValue: 350,
+                              minValue: 0,
                             ),
-                          ),
-                        )
+                        ),
                       ],
                     ),
                   ),
@@ -189,35 +172,22 @@ class _InputPageState extends State<InputPage> {
                             style: Klabelstyle,
                           ),
                         ),
-                        Text(
-                          age.toString(),
-                          style: kTexttwo,
-                        ),
                         Expanded(
-                          child: Padding(
-                            padding: EdgeInsets.only(bottom: 5),
-                            child: Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                IconButtonByMe(
-                                    icon: FontAwesomeIcons.minus,
-                                    onPressed: () {
-                                      setState(() {
-                                        age--;
-                                      });
-                                    }),
-                                SizedBox(width: 10),
-                                IconButtonByMe(
-                                    icon: FontAwesomeIcons.plus,
-                                    onPressed: () {
-                                      setState(() {
-                                        age++;
-                                      });
-                                    })
-                              ],
-                            ),
+                          child: StepperSwipe(
+                            initialValue:age,
+                            stepperValue: age,
+                            speedTransitionLimitCount: 10,
+                            onChanged: (int age1) => age = age1,
+                            firstIncrementDuration: Duration(milliseconds: 150),
+                            secondIncrementDuration: Duration(milliseconds: 90),
+                            direction: Axis.horizontal,
+                            dragButtonColor: kBottomcontainercolor,
+                            withFastCount: true,
+                            withPlusMinus: true,
+                            maxValue: 150,
+                            minValue: 0,
                           ),
-                        )
+                        ),
                       ],
                     ),
                   ),
@@ -283,3 +253,4 @@ class _InputPageState extends State<InputPage> {
     );
   }
 }
+
